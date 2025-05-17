@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automatic Dog Feeder - Arduino Project</title>
+    <style>
+        :root {
+            --primary-color: #b399d4;
+            --secondary-color: #d1c4e9;
+            --dark-color: #4527a0;
+            --light-color: #f3e5f5;
+            --accent-color: #9575cd;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .home-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background-color: var(--dark-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: 2px solid white;
+        }
+        
+        .home-btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            flex: 1;
+        }
+        
+        .project-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .project-header:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        
+        .header-content {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 4.5rem;
+            margin: 0 0 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-weight: 800;
+            line-height: 1.1;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            margin: 0 0 30px 0;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin: 30px 0 20px;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            text-align: center;
+            margin: 60px 0 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent-color);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .media-section {
+            text-align: center;
+            width: 100%;
+            margin: 40px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .media-section:hover {
+            transform: translateY(-3px);
+        }
+        
+        .media-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .media-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .square-video-container {
+            position: relative;
+            padding-bottom: 100%;
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+        
+        .tall-video-container {
+            position: relative;
+            padding-bottom: 75%;
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+            margin: 20px auto;
+        }
+        
+        .square-video-container video,
+        .tall-video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .text-placeholder {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .text-placeholder:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        }
+        
+        .text-placeholder p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: var(--dark-color);
+            color: white;
+            margin-top: 60px;
+            transition: all 0.3s ease;
+        }
+        
+        footer:hover {
+            background-color: var(--accent-color);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 3rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .project-header {
+                padding: 40px 20px;
+            }
+            
+            .media-container {
+                width: 95%;
+            }
+            
+            .home-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="../index.html" class="home-btn">Home</a>
+
+    <div class="container">
+        <header class="project-header" id="top">
+            <div class="header-content">
+                <h1>AUTOMATIC DOG FEEDER</h1>
+                <h2>ARDUINO PROJECT</h2>
+            </div>
+        </header>
+
+        <main>
+            <!-- SolidWorks Section -->
+            <h3 class="section-title">SOLIDWORKS DESIGN</h3>
+            
+            <div class="media-section">
+                <h3>Concept Animation</h3>
+                <div class="media-container">
+                    <div class="square-video-container">
+                        <video autoplay muted loop playsinline controls>
+                            <source src="../assets/videos/DogFeederConceptVideo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-placeholder">
+                <h3>Engineering Design & Motion Analysis</h3>
+                <p>The complete dog feeder assembly was designed in SolidWorks with comprehensive motion studies focused on utilizing the built-in Motor and Gravity functions to ensure the design would work as intended in a theoretical sense. </p>
+                
+                <h4>Design Improvements Implemented:</h4>
+                <ul>
+                    <li><strong>Gear Reduction System:</strong> Implemented a 2:1 gear train to multiply torque while maintaining precision</li>
+                    <li>Redesigned auger mechanism to work with the new gear system</li>
+                    <li>Verified through motion studies that the solution provided reliable operation</li>
+                    <li>Optimized hopper geometry to prevent food jams while ensuring consistent flow</li>
+                </ul>
+            
+            </div>
+
+            <!-- Prototype Section -->
+            <h3 class="section-title">PROTOTYPE</h3>
+            
+            <div class="media-section">
+                <h3>Physical Implementation</h3>
+                <div class="media-container">
+                    <img src="../assets/images/DogFeederPrototype.jpg" alt="Automatic Dog Feeder" class="project-image">
+                </div>
+            </div>
+            
+            <div class="text-placeholder">
+                <h3>Functional Prototype</h3>
+                <p>The physical prototype implements the gear solution identified in the SolidWorks analysis, successfully resolving the power deficiency while adding these features:</p>
+                
+                <h4>Technical Specifications:</h4>
+                <ul>
+                    <li>Arduino-controlled stepper motor with gear reduction system</li>
+                    <li>3D-printed structural components and custom single-stage gear train gear train</li>
+                    <li>Programmable feeding schedule with portion control</li>
+                </ul>
+            </div>
+            
+            <div class="media-section">
+                <h3>Prototype Demonstration</h3>
+                <div class="media-container">
+                    <div class="tall-video-container">
+                        <video autoplay muted loop playsinline controls>
+                            <source src="../assets/videos/DogFeederPrototypeVideo.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-placeholder">
+                <h3>Development Process</h3>
+                <p>The prototype went through several iterations to achieve optimal performance, with particular attention to the gear system:</p>
+                
+                <h4>Key Achievements:</h4>
+                <ul>
+                    <li><strong>Power Solution:</strong> The gear system provides consistent torque without motor strain</li>
+                    <li>Eliminated food jams through optimized auger design</li>
+                    <li>Precise feeding times using a DS3231 RTC module for reliable timekeeping in the Arduino circuit</li>
+                    
+                </ul>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        © <span id="currentYear"></span> AUTOMATIC DOG FEEDER | ARDUINO PROJECT
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

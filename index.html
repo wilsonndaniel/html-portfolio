@@ -1,30 +1,78 @@
-<!-- TODO 1: Create the HTML Boilerplate -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daniel's Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Daniel's Portfolio</h1>
-  <h2>Mechatronics Engineering</h2>
-  <hr />
-  <h3><a href="./public/movie-ranking.html">Movie Ranking Project</a></h3>
-  <img src="./assets/images/movie.png" height="250" alt="movie ranking project preview"/>
+    <!-- Header Section -->
+    <h1 id="whiteonorange" class="aligncenter">Daniel's Portfolio</h1>
+    <h2 id="whiteongreen" class="aligncenter">Mechatronics Engineering</h2>
 
-  <h3><a href="./public/birthday-invite.html">Birthday Invite Project</a></h3>
-  <img src="./assets/images/birthday-invite.png" height="250" alt="birthday invite project preview"/>
+    <!-- Navigation Buttons -->
+    <div class="aligncenter nav-buttons">
+        <a href="./public/contact.html" class="btn" id="whiteonpink">Contact Me</a>
+        <a href="./public/about.html" class="btn" id="whiteonpink">About Me</a>
+    </div>
 
-  <h3><a href="./public/rolie-polie.html">Rolie Polie Game</a></h3>
-  <img src="./assets/RoliePolieScreenshots/PillarSS.png" height="250" alt="rolling ball game"/>
-  
-  <h3><a href="./public/penguin-parade-preview.html">Penguin Parade Game</a></h3>
-  <img src="./assets/PenguinParadeScreenshots/MainMenu.png" height="250" alt="Penguin Parade project preview"/>
- 
-  <hr />
+    <hr class="divider">
 
-  <a href="./public/about.html">About Me</a>
-  <a href="./public/contact.html">Contact Me</a>
+    <!-- Resume Section -->
+    <div class="section">
+        <h2 class="aligncenter" style="color: #C58940;">My Resume</h2>
+        <div class="resume-container">
+            <iframe class="resume-iframe" 
+                    src="./assets/images/Daniel Wilson - Resume 2025.pdf#toolbar=0&navpanes=0">
+            </iframe>
+            
+            <a href="./assets/images/Daniel Wilson - Resume 2025.pdf" 
+               class="download-btn"
+               target="_blank"
+               rel="noopener noreferrer">
+               Download Resume
+            </a>
+        </div>
+    </div>
+
+    <!-- Experience Section -->
+    <div class="section">
+      <h2 class="aligncenter" style="color: #6a4c93;">My Experience</h2>
+      <div class="aligncenter">
+        <a href="./public/experience.html" class="experience-btn">
+            View My Professional Journey
+        </a>
+      </div>
+    </div>
+
+    <!-- Mechatronics Projects Section -->
+    <div class="section">
+        <h2 class="aligncenter" style="color: darkseagreen;">Mechatronics Projects</h2>
+        <div class="aligncenter">
+            <a href="./public/DogFeeder.html" class="project-btn">Automatic Dog Feeder <span class="featured-badge">★</span></a>
+            <a href="./public/RGBLED.html" class="project-btn">RGB LED Hexagonal Lights</a>
+        </div>
+    </div>
+
+    <!-- Coding Projects Section -->
+    <div class="section">
+        <h2 class="aligncenter" style="color: #c7abe2;">Coding Projects</h2>
+        <div class="aligncenter">
+            <a href="./public/rolie-polie.html" class="project-btn">Unity - Rolie Polie Game <span class="featured-badge">★</span></a>
+            <a href="./public/penguin-parade-preview.html" class="project-btn">Java - Penguin Parade</a>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <footer class="aligncenter">
+        © <span id="currentYear"></span> Daniel's Portfolio
+    </footer>
+
+    <script>
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
