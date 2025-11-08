@@ -10,6 +10,9 @@
             --blue-color: #1a6a9b;
             --dark-color: #2c3e50;
             --light-blue: #e8f4fc;
+            --red-color: #b71c1c;
+            --dark-red: #7f0000;
+            --light-red: #ffebee;
         }
         
         body {
@@ -51,7 +54,6 @@
         
         h2 {
             font-family: 'Montserrat', sans-serif;
-            color: var(--blue-color);
             font-size: 1.8rem;
             margin: 15px 0;
         }
@@ -70,6 +72,24 @@
             margin: 0 30px 30px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             text-align: center;
+        }
+        
+        .compudent-section h2 {
+            color: var(--blue-color);
+        }
+        
+        /* Red Section Styling */
+        .red-section {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 0 30px 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .red-section h2 {
+            color: var(--red-color);
         }
         
         .experience-container {
@@ -121,6 +141,32 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         
+        /* Red Button Styling */
+        .red-button {
+            display: inline-block;
+            background-color: var(--red-color);
+            color: white !important;
+            text-decoration: none;
+            padding: 20px 50px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 2.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .red-button:hover {
+            background-color: #c62828;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
         .centered-content {
             text-align: center;
             margin: 25px auto;
@@ -130,6 +176,15 @@
         .highlight-box {
             background-color: white;
             border-left: 4px solid var(--blue-color);
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .red-highlight-box {
+            background-color: white;
+            border-left: 4px solid var(--red-color);
             padding: 25px;
             margin: 30px 0;
             border-radius: 0 8px 8px 0;
@@ -171,6 +226,16 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         
+        .red-role-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto 20px;
+            background-color: var(--dark-red);
+            padding: 15px 0;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
         .role-title {
             font-family: 'Montserrat', sans-serif;
             color: white;
@@ -198,7 +263,7 @@
                 font-size: 0.9rem;
             }
             
-            .company-link {
+            .company-link, .red-button {
                 font-size: 1.8rem; /* Slightly smaller on mobile */
                 padding: 15px 30px;
             }
@@ -216,7 +281,7 @@
                 font-size: 2.5rem;
             }
             
-            .role-container {
+            .role-container, .red-role-container {
                 width: 95%;
                 padding: 10px 0;
             }
@@ -231,6 +296,43 @@
     <div class="experience-highlight">
         <div class="experience-header">
             <h1>Experience</h1>
+        </div>
+    </div>
+
+    <!-- Cam Tran -->
+    <div class="red-section">
+        
+        <div class="red-role-container">
+            <div class="role-title">Engineering Intern</div>
+        </div>
+        
+        
+        <a href="https://www.camtran.com/" class="red-button" target="_blank">
+            Cam Tran
+        </a>
+        
+        <!-- Date -->
+        <div class="centered-content">
+            <h3>September 2025 - April 2026</h3>
+        </div>
+        
+        <!--First Paragraph -->
+        <div class="centered-content">
+            <h2>Daily Work</h2>
+            <h3>Designed custom components to meet unique project requirements. Developed comprehensive Standard Work Instructions for all processes involved in the production of three-phase transformers. Implemented systems and tools to optimize manufacturing efficiency and enhance data analysis. Contributed to initiatives that led to a threefold increase in factory production capacity, supporting ongoing process improvements and strategic expansion.</h3>
+        </div>
+        
+        <div class="experience-container">
+            <div class="experience-text">
+                <div class="red-highlight-box">
+                    <h2>Site Layout Project</h2>
+                    <h3>Conducted site visits across multiple provinces to model and document complete facility layouts. </h3>
+                </div>
+            </div>
+            
+            <div class="experience-image">
+                <img src="../assets/images/RedSectionImage.jpg" alt="Cam Tran Work">
+            </div>
         </div>
     </div>
     
